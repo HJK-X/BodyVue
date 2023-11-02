@@ -1,6 +1,6 @@
 # BodyVue
 
-## Objective:
+#### Objective:
 This project creates a measurement device for estimating body fat percentage. We integrate techniques in computer vision and embedded system design via mounting a camera on a programmed rotating mechanical arm to capture data which we then send to the cloud for computing into the estimated value. 
 
 RISKS, RESOURCES:
