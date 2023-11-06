@@ -9,7 +9,7 @@ RISKS, RESOURCES:
   - NERF is being developed at UC Berkeley and scientific advising from researchers on campus is a necessary resource.
   - Existing research as well as software for NERF, such as nerfstudio, is available
   - UC Berkeley provides a MakersSpace and wood cutting work areas making wood a viable cost-effective option
-  
+
 Stages:
 STAGE ONE (Current): 
 a. Model the CPS, the mechanical frame and the process of collecting data and transmitting it
