@@ -1,24 +1,12 @@
-colmap\COLMAP.bat feature_extractor --database_path .\database.db --image_path .\data\scan\test\output --ImageReader.single_camera 1 --ImageReader.camera_model OPENCV
+add colmap to PATH
 
-feature extraction
+colmap\COLMAP.bat feature_extractor --database_path .\database.db --image_path .\data\scan\test\output --ImageReader.single_camera 1 --ImageReader.camera_model OPENCV
 
 
 colmap\COLMAP.bat vocab_tree_matcher --database_path .\data\scan\database.db --VocabTreeMatching.vocab_tree_path C:\Users\justi\AppData\Local\nerfstudio\nerfstudio\vocab_tree.fbow  
 
-feature matching
-
-
 
 colmap\COLMAP.bat mapper --database_path .\data\scan\database.db --image_path .\data\scan\images --output_path .\data\scan\sparse
 
-mapper
-
-
-
-
 colmap\COLMAP.bat bundle_adjuster --input_path .\data\scan\sparse/0 --output_path .\data\scan\sparse/0 --BundleAdjustment.refine_principal_point 1
-
-bundle adjuster
-
-
 
