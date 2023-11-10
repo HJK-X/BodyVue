@@ -1,0 +1,11 @@
+/env
+/vcpkg
+/data
+/outputs
+/exports
+/colmap
+/sdf
+/nerf
+/openmvs
+/sdfstudio
+/Hierarchical-Localization
