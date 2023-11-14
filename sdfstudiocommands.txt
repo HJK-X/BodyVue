@@ -24,3 +24,4 @@ python -m pip install -e .
 # may want to delete pycolmap req
 
 git submodule update --init --recursive
+ 
