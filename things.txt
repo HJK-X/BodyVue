@@ -1,0 +1,19 @@
+https://www.servocity.com/hs-755hb-servo/
+HITEC servo:
+4.8V-6V
+230 mA-285 mA
+
+https://www.sunfounder.com/products/pca9685-servo-driver
+PCA9685 PWM Servo Driver
+https://www.aranacorp.com/en/using-a-pca9685-module-with-raspberry-pi/
+
+
+https://www.dfrobot.com/product-1512.html
+15A Single DC Motor Controller
+6.5V-40V
+
+
+
+
+
+https://www.dexterindustries.com/howto/run-a-program-on-your-raspberry-pi-at-startup/
