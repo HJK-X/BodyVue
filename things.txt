@@ -14,6 +14,18 @@ https://www.dfrobot.com/product-1512.html
 
 https://www.gobilda.com/5202-series-yellow-jacket-motor-1-1-ratio-24mm-length-6mm-d-shaft-6000-rpm-3-3-5v-encoder/
 
-
-
+  Running program on pi at startup:
 https://www.dexterindustries.com/howto/run-a-program-on-your-raspberry-pi-at-startup/
+
+Control of all devices through pins via built in gpiozero library:
+
+  Camera Control:
+monitor to manually focus - raspistill -t 0 (adjustment screws to lock in)
+
+  Servo Control:
+built in servo library - from gpiozero import Servo
+hardware based timing for PWIM and servo pulses - from gpiozero.pins.pigpio import PiGPIOFactory (obtain min and max pulse time in ms from servo data sheet)
+sweeping motions - servo.value = math.radians(x) where x == positions
+
+
+  
