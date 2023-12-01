@@ -28,5 +28,9 @@ built in servo library - from gpiozero import Servo
 hardware based timing for PWIM and servo pulses - from gpiozero.pins.pigpio import PiGPIOFactory (obtain min and max pulse time in ms from servo data sheet)
 sweeping motions - servo.value = math.radians(x) where x == positions
 
+# w/out driver https://www.youtube.com/watch?v=_fdwE4EznYo&t=222s 
+# w/ driver https://www.youtube.com/watch?v=bB-xymRI8BY 
 
-  
+  Motor Control: 
+document sheet - https://wiki.dfrobot.com/15A_Single_DC_Motor_Driver_SKU__DRI0042
+
