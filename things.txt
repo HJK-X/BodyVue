@@ -19,6 +19,9 @@ https://www.dexterindustries.com/howto/run-a-program-on-your-raspberry-pi-at-sta
 
 Control of all devices through pins via built in gpiozero library:
 
+  Raspberry Pi:
+documentation - https://www.raspberrypi.com/documentation/computers/raspberry-pi.html
+
   Camera Control:
 monitor to manually focus - raspistill -t 0 (adjustment screws to lock in)
 
