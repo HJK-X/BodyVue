@@ -28,7 +28,7 @@ monitor to manually focus - raspistill -t 0 (adjustment screws to lock in)
   Servo Control:
 datasheet - https://cdn-learn.adafruit.com/downloads/pdf/16-channel-pwm-servo-driver.pdf
 built in servo library - from gpiozero import Servo
-hardware based timing for PWIM and servo pulses - from gpiozero.pins.pigpio import PiGPIOFactory (obtain min and max pulse time in ms from servo data sheet)
+hardware based timing for PWIM and servo pulses - from gpiozero.pins.pigpio import PiGPIOFactory (obtain min and max pulse time in ms from servo data sheet), https://abyz.me.uk/rpi/pigpio/python.html
 sweeping motions - servo.value = math.radians(x) where x == positions
 
 # w/out driver https://www.youtube.com/watch?v=_fdwE4EznYo&t=222s 
