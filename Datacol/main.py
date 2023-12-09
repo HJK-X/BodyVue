@@ -33,8 +33,9 @@ enc = Encoder.Encoder(ENCODER_CHA_PIN, ENCODER_CHB_PIN)
 camera = picamera.PiCamera()
 servo = ServoKit(channels=16).servo[0]
 
-
 angles = [100, 200, 0]
+
+DROPBOX_ACCESS_TOKEN = ""
 
 while True: 
     while True: wait
