@@ -1,9 +1,12 @@
+import os
 from time import sleep
 import RPi.GPIO as GPIO
 from adafruit_servokit import ServoKit
 from RpiMotorLib import rpi_dc_lib
 import Encoder
 import picamera
+import dropbox
+from DropboxUtils import dropbox_connect, dropbox_upload_file
 
 def take_picture(filename,camera):
     camera.resolution = (1024, 768)
@@ -35,8 +38,6 @@ servo = ServoKit(channels=16).servo[0]
 
 angles = [100, 200, 0]
 
-DROPBOX_ACCESS_TOKEN = ""
-
 while True: 
     while True: wait
         GPIO.output(LED_PIN,GPIO.HIGH)
@@ -63,7 +64,6 @@ while True:
     
     stop_video(camera)
 
-    TOKEN = ''
-    Send data to cloud
-    Delete data from SSD
-
+    dbx = dropbox_connect()
+    dropbox_upload_file(os.getcwd(), "test.mp4", "/test.mp4")
+    
