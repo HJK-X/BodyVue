@@ -1,3 +1,7 @@
+download colmap binaries
+https://github.com/colmap/colmap/releases/download/3.8/COLMAP-3.8-windows-cuda.zip
+
+
 add colmap to PATH
 
 colmap\COLMAP.bat feature_extractor --database_path .\database.db --image_path .\data\scan\test\output --ImageReader.single_camera 1 --ImageReader.camera_model OPENCV
