@@ -6,7 +6,7 @@ motor = rpi_dc_lib.L298NMDc(27, 22, 17)
 enc = Encoder.Encoder(18, 15)
 
 old = enc.read()
-motor.forward(25)
+motor.forward(50)
 p = []
     
 try:
