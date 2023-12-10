@@ -1,5 +1,5 @@
-DROPBOX_ACCESS_TOKEN = "sl.BrboeOkzViox6dwm_yL5vrF8g9agUHzjXv4gxVjCo2Q0nQbGJ8f0Jy__f-Pl_MTFTDH3HWf7IKT6y6uRICEn-kIL_yL98vWpjLa3kdRPFGH8rSY01EGdev0pnw6ACIZ5oA7Kpa_KC8BO"
-
+from environmentvar import DROPBOX_ACCESS_TOKEN
+import dropbox
 
 def dropbox_connect():
     """Create a connection to Dropbox."""

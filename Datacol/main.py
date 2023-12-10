@@ -5,7 +5,6 @@ from adafruit_servokit import ServoKit
 from RpiMotorLib import rpi_dc_lib
 import Encoder
 import picamera
-import dropbox
 from DropboxUtils import dropbox_connect, dropbox_upload_file
 
 def take_picture(filename,camera):
@@ -18,15 +17,14 @@ def start_video(filename, camera):
 def stop_video(camera):
     camera.stop_recording()
 
-LED_PIN = 3129301293
-BUTTON_PIN = 10213
+LED_PIN = 14
+BUTTON_PIN = 23
 
 MOTOR_IN1_PIN = 27
 MOTOR_IN2_PIN = 22
 MOTOR_PWM_PIN = 17
 ENCODER_CHA_PIN = 18
 ENCODER_CHB_PIN = 15
-
 
 GPIO.setup(LED_PIN,GPIO.OUT)
 GPIO.setup(BUTTON_PIN,GPIO.IN,pull_up_down=GPIO.PUD_UP)
@@ -36,34 +34,38 @@ enc = Encoder.Encoder(ENCODER_CHA_PIN, ENCODER_CHB_PIN)
 camera = picamera.PiCamera()
 servo = ServoKit(channels=16).servo[0]
 
-angles = [100, 200, 0]
+angles = [100, 180, 0]
 
-while True: 
-    while True: wait
-        GPIO.output(LED_PIN,GPIO.HIGH)
-        button_state = GPIO.input(BUTTON_PIN)
-        print(button_state)
-        if button_state == 0:
-            break
-    GPIO.output(LED_PIN, GPIO.LOW)
-    
-    for i in range(3):
-        servo.angle = angles[i]
-        start_video("test.mp4", camera)
+try:
 
-        start = enc.read()
-        motor.forward(50)
-        while enc.read()-old < 5000:
-            a = enc.read()-old
-            sleep(.01)
-            print(a)
-            
-        print(enc.read()-old)
-        motor.brake()
-        print(enc.read()-old)
-    
-    stop_video(camera)
+    while True: 
+        while True:
+            GPIO.output(LED_PIN,GPIO.HIGH)
+            button_state = GPIO.input(BUTTON_PIN)
+            if button_state == 0:
+                break
 
-    dbx = dropbox_connect()
-    dropbox_upload_file(os.getcwd(), "test.mp4", "/test.mp4")
+        print("starting spin")
+        GPIO.output(LED_PIN, GPIO.LOW)
+        
+        start_video("test.h264", camera)
+        for i in range(3):
+            servo.angle = angles[i]
+
+            start = enc.read()
+            motor.forward(35)
+            while enc.read()-start < 2000:
+                a = enc.read()-start
+                sleep(.03)
+                print(a)
+                
+            print(enc.read()-start)
+            motor.brake()
+            print(enc.read()-start)
+        
+        stop_video(camera)
+
+        dropbox_upload_file(os.getcwd(), "test.h264", "/test.h264")
+except KeyboardInterrupt:
+    GPIO.output(LED_PIN,GPIO.LOW)
     
