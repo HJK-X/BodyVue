@@ -1,5 +1,6 @@
 from environmentvar import DROPBOX_ACCESS_TOKEN
 import dropbox
+import pathlib
 
 def dropbox_connect():
     """Create a connection to Dropbox."""

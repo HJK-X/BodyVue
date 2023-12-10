@@ -49,12 +49,12 @@ try:
         GPIO.output(LED_PIN, GPIO.LOW)
         
         start_video("test.h264", camera)
-        for i in range(3):
-            servo.angle = angles[i]
+        for i in range(1):
+            # servo.angle = angles[i]
 
             start = enc.read()
-            motor.forward(35)
-            while enc.read()-start < 2000:
+            motor.forward(30)
+            while enc.read()-start < 3400:
                 a = enc.read()-start
                 sleep(.03)
                 print(a)
@@ -64,8 +64,13 @@ try:
             print(enc.read()-start)
         
         stop_video(camera)
+        servo.angle = None
 
         dropbox_upload_file(os.getcwd(), "test.h264", "/test.h264")
-except KeyboardInterrupt:
+except Exception as e:
+    servo.angle = None
     GPIO.output(LED_PIN,GPIO.LOW)
+
+
+
     
