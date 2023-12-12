@@ -69,7 +69,7 @@ target_compile_features(rasterise PUBLIC cxx_std_11)
 target_compile_options(rasterise PUBLIC ${Tensorflow_COMPILE_FLAGS})
 target_link_libraries(rasterise OpenGL::EGL OpenGL::OpenGL ${Tensorflow_LINK_FLAGS})
 target_link_libraries(rasterise ${TENSORFLOW_INSTALL_PATH}/libtensorflow_framework.so.1)  # Adjust the library name as per your system
-
+target_link_libraries(rasterise cuda)
 # Put the compiled library in the python package folder, rather than whatever build folder is being used
 set_target_properties(
     rasterise PROPERTIES
