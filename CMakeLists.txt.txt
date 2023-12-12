@@ -4,7 +4,8 @@ set(CUDA_TOOLKIT_ROOT_DIR "/usr/local/cuda-12.3")
 set(CMAKE_CUDA_COMPILER "/usr/local/cuda-12.3/bin/nvcc")
 
 # export PATH="/usr/local/cuda-12.3/bin:/opt/cmake-3.10.3-Linux-x86_64/bin:/mnt/c/Program Files (x86)/Microsoft Visual Studio/2017/BuildTools/VC/Tools/MSVC/14.16.27023/bin/Hostx64/x64:home/bodyvue/.local/bin:/home/bodyvue/miniconda3/envs/v2a/envs/octopus/bin:/home/bodyvue/miniconda3/envs/v2a/condabin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.0.9.0_x64__8wekyb3d8bbwe:/mnt/c/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v12.3/bin:/mnt/c/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v12.3/libnvvp:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0:/mnt/c/Windows/System32/OpenSSH:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/Program Files/dotnet:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/NVIDIA Corporation/Nsight Compute 2023.3.1:/mnt/c/Program Files/CMake/bin:/mnt/c/Users/fdenn/miniconda3/pkgs/m2w64-binutils-2.25.1-5/Library/mingw-w64/x86_64-w64-mingw32/bin:/mnt/c/Program Files/Microsoft SQL Server/130/Tools/Binn:/mnt/c/Users/fdenn/miniconda3:/mnt/c/Users/fdenn/miniconda3/Library/mingw-w64/bin:/mnt/c/Users/fdenn/miniconda3/Library/usr/bin:/mnt/c/Users/fdenn/miniconda3/Library/bin:/mnt/c/Users/fdenn/miniconda3/Scripts:/mnt/c/Users/fdenn/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/fdenn/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/fdenn/.dotnet/tools:/mnt/c/Users/fdenn/COLMAP-3.8-windows-cuda:/mnt/c/Users/fdenn/Downloads/cudnn-10.0-windows10-x64-v7.3.0.29/cuda/bin:/snap/bin"
-
+# export LD_LIBRARY_PATH="/usr/local/cuda-12.3/lib64/"
+# export CUDA_HOME="/usr/local/cuda-12.3"
 project(dirt LANGUAGES CXX CUDA) 
 
 find_package(OpenGL REQUIRED COMPONENTS OpenGL EGL)
@@ -24,7 +25,6 @@ set(TensorFlow_ROOT "/home/bodyvue/miniconda3/envs/v2a/envs/octopus/lib/python3.
 #include_directories(${TENSORFLOW_INSTALL_PATH}/include)
 
 # Then, attempt to find TensorFlow
-#target_link_libraries(rasterise ${TENSORFLOW_INSTALL_PATH}/lib/libtensorflow.so)  # Adjust the library name as per your system
 
 include_directories("/home/bodyvue/miniconda3/envs/v2a/envs/octopus/lib/python3.7/site-packages/tensorflow_core/include")
 
@@ -68,6 +68,7 @@ add_library(
 target_compile_features(rasterise PUBLIC cxx_std_11)
 target_compile_options(rasterise PUBLIC ${Tensorflow_COMPILE_FLAGS})
 target_link_libraries(rasterise OpenGL::EGL OpenGL::OpenGL ${Tensorflow_LINK_FLAGS})
+target_link_libraries(rasterise ${TENSORFLOW_INSTALL_PATH}/libtensorflow_framework.so.1)  # Adjust the library name as per your system
 
 # Put the compiled library in the python package folder, rather than whatever build folder is being used
 set_target_properties(
