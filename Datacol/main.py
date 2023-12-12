@@ -35,6 +35,10 @@ camera = picamera.PiCamera()
 servo = ServoKit(channels=16).servo[0]
 
 angles = [100, 180, 0]
+circumference = 3400
+interval = circumference/5
+encoder_pause = .03
+motor_pause = 2
 
 try:
 
@@ -48,16 +52,21 @@ try:
         print("starting spin")
         GPIO.output(LED_PIN, GPIO.LOW)
         
-        start_video("test.h264", camera)
-        for i in range(1):
-            # servo.angle = angles[i]
+        start_video("test.h264", camera) #start camera
+        for i in angles: #set camera mount angle
+            servo.angle = i
 
-            start = enc.read()
-            motor.forward(30)
-            while enc.read()-start < 3400:
-                a = enc.read()-start
-                sleep(.03)
-                print(a)
+            start = enc.read() #obtain feedback for arm positioning
+            motor.forward(30) #start motor with positional rotation
+            
+            while enc.read()-start < circumference:
+                print(enc.read()-start)
+                if enc.read()-start >= interval:
+                    motor.brake()
+                    interval += enc.read()-start
+                    sleep(motor_pause)
+                    motor.forward(30)
+                sleep(encoder_pause)
                 
             print(enc.read()-start)
             motor.brake()
@@ -70,7 +79,5 @@ try:
 except Exception as e:
     servo.angle = None
     GPIO.output(LED_PIN,GPIO.LOW)
-
-
 
     
