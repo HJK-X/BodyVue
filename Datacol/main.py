@@ -47,10 +47,11 @@ try:
             GPIO.output(LED_PIN,GPIO.HIGH)
             button_state = GPIO.input(BUTTON_PIN)
             if button_state == 0:
+                GPIO.output(LED_PIN, GPIO.LOW)
                 break
 
+        sleep(5)
         print("starting spin")
-        GPIO.output(LED_PIN, GPIO.LOW)
         
         start_video("test.h264", camera) #start camera
         for i in angles: #set camera mount angle
